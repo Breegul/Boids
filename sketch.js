@@ -1,13 +1,17 @@
 const flock = [];
-const numBoids = 100;
+const numBoids = 200;
 
 let alignSlider, cohesionSlider, separationSlider;
 
 function setup() {
-  createCanvas(640, 360);
-  alignSlider = createSlider(0, 5, 1, 0.1);
-  cohesionSlider = createSlider(0, 5, 1, 0.1);
-  separationSlider = createSlider(0, 5, 1, 0.1);
+  createCanvas(680, 500);
+  createP("Alignment");
+  alignSlider = createSlider(0, 2, 1.5, 0.1);
+  createP("Cohesion");
+  cohesionSlider = createSlider(0, 2, 1, 0.1);
+  createP("Separation");
+  separationSlider = createSlider(0, 2, 1, 0.1);
+
   for (let i = 0; i < numBoids; i++) {
     flock.push(new Boid());
   }
@@ -18,7 +22,7 @@ function draw() {
 
   for (let boid of flock) {
     boid.edges();
-    boid.flock(flock);
+    boid.align(flock);
     boid.update();
     boid.show();
   }
